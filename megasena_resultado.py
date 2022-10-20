@@ -18,11 +18,11 @@ def megasena_pesquisa_resultado(concurso):
         
         options = Options() 
         options.add_argument("--incognito") # modo anônimo.
-        options.add_argument("--disable-logging") # desativa 
+        options.add_argument("--disable-logging") # desativa log.
         options.add_argument('--headless') # não abre a janela.
-        options.add_argument('--log-level=3')
+        options.add_argument('--log-level=3') # desativa log.
         options.add_argument("start-maximized") # caso precise abrir, maximiza.
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_experimental_option('excludeSwitches', ['enable-logging']) # desativa mensagem do Chrome.
         
         navegador = webdriver.Chrome(
             
