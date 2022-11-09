@@ -2,7 +2,7 @@ from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 import warnings
 from pandas import DataFrame
 
@@ -17,16 +17,11 @@ def lotofacil_pesquisa_resultado(concurso):
     try:
         
         options = Options() 
-        options.add_argument("--incognito")
-        options.add_argument("--disable-logging")
-        options.add_argument('--headless')
-        options.add_argument('--log-level=3')
-        options.add_argument("start-maximized")
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--headless') # não abre a janela.
         
-        navegador = webdriver.Chrome(
+        navegador = webdriver.Firefox(
             
-            executable_path='C:/Users/cadastro/anaconda3/chromedriver.exe',
+            executable_path='C:/webdriver/geckodriver.exe',
             options=options
             
         )

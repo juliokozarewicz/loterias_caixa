@@ -9,9 +9,9 @@ from pandas import DataFrame
 
 warnings.filterwarnings("ignore")
 
-def megasena_pesquisa_resultado(concurso):
+def lotomania_pesquisa_resultado(concurso):
     """
-    Pesquisa o resultado da Mega-Sena pelo número do concurso.
+    Pesquisa o resultado da Lotomania pelo número do concurso.
     """
 
     try:
@@ -28,7 +28,7 @@ def megasena_pesquisa_resultado(concurso):
         
         navegador.get(
             
-            'https://loterias.caixa.gov.br/Paginas/Mega-Sena.aspx'
+            'https://loterias.caixa.gov.br/Paginas/Lotomania.aspx'
             
         )
         
@@ -45,7 +45,7 @@ def megasena_pesquisa_resultado(concurso):
         
         sleep(1)
         
-        result_megasena = {
+        result_lotomania = {
             
             'n1': 0,
             'n2': 0,
@@ -62,32 +62,36 @@ def megasena_pesquisa_resultado(concurso):
             'n13': 0,
             'n14': 0,
             'n15': 0,
+            'n16': 0,
+            'n17': 0,
+            'n18': 0,
+            'n19': 0,
+            'n20': 0,
             'produto': '',
             'concurso': 0
             
         }
         
-        for num in range(1,7):
+        for num in range(1,21):
             
-            result_megasena[f'n{num}'] = pesquisa_concurso.find_element(
+            result_lotomania[f'n{num}'] = pesquisa_concurso.find_element(
                 
                 By.XPATH,
-                f'//*[@id="ulDezenas"]/li[{num}]'
+                f'//*[@id="wp_resultados"]/div[2]/div/div/div[1]/ul/li[{num}]'
                 
             ).text
             
-            result_megasena[f'n{num}'] = int(result_megasena[f'n{num}'])
+            result_lotomania[f'n{num}'] = int(result_lotomania[f'n{num}'])
         
-        result_megasena['produto'] = 'megasena'
+        result_lotomania['produto'] = 'lotomania'
         
-        result_megasena['concurso'] = concurso
+        result_lotomania['concurso'] = concurso
         
-        df_megasena_resultado = DataFrame([result_megasena])
+        df_lotomania_resultado = DataFrame([result_lotomania])
         
         navegador.close()
     
     except Exception as error:
         print(error)
     
-    return df_megasena_resultado
-
+    return df_lotomania_resultado
